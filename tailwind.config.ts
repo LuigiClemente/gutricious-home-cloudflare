@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,33 +8,70 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      screens: {
+        'xs' :'501px',
+        'sm': '600px',
+        // => @media (min-width: 640px) { ... }
+  
+        'md': '900px',
+        // => @media (min-width: 768px) { ... }
+  
+        'lg': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'xl': '1280px',
+        // => @media (min-width: 1280px) { ... }
+  
+        '2xl': '1460px',
+       
       },
       colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070f3",
-        cyan: "#79FFE1",
+        'primary': '#ffb900',
+        'primary-light': '#DDAF29', // Seems the same as primary, adjust if needed
+        'primary-dark': '#c4981f8e',
+        'grey':'#848484',
+        'text-grey':'#58626c',
+        'light-section-heading': '#fff8f7',
+
+        'secondary-light': '#ffb900', // Seems the same as primary, adjust if necessary
+        'secondary-dark': '#111122',
+        'transparent-dark':'#0f0f23b3',
+        'tertiary-light': '#2998ff',
+        'tertiary-dark': '#5643fa',
+        'green ': '#E9CE5D',
+
+        'grey-light-1': '#a9a9b7',
+        'grey-light-2': '#eee',
+ 
+        'grey-dark': '#777',
+        'grey-dark-2': '#999',
+        'grey-dark-3': '#333',
+ 
+        'white': '#fff',
+        'black': '#000', 
+        'my-green' :'rgb(0, 151, 136)',
+        
       },
-      spacing: {
-        28: "7rem",
-      },
-      letterSpacing: {
-        tighter: "-.04em",
-      },
-      fontSize: {
-        "5xl": "2.5rem",
-        "6xl": "2.75rem",
-        "7xl": "4.5rem",
-        "8xl": "6.25rem",
-      },
-      boxShadow: {
-        sm: "0 5px 10px rgba(0, 0, 0, 0.12)",
-        md: "0 8px 30px rgba(0, 0, 0, 0.12)",
+      minWidth: ({ theme }) => ({
+        ...theme('width'),
+      }),
+      maxWidth: ({ theme }) => ({
+        ...theme('width'),
+      }),
+      minHeight: ({ theme }) => ({
+        ...theme('height'),
+      }),
+      maxHeight: ({ theme }) => ({
+        ...theme('height'),
+      }),
+      fontFamily: {
+        'dancing-script': ['"Dancing Script"', 'cursive'],
+        'itner': ['"Inter"', 'sans-serif'],
+        'futura': ['"Futura"', 'cursive'],
+        'kingcaslon': ['"KingsCaslon"', 'cursive'],
+        'Univers': ['"Univers"', 'cursive'],
+
+
       },
     },
   },
