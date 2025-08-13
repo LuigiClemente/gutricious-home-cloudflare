@@ -710,3 +710,38 @@ footer:has(input:focus) .btn-primary.secondary {
   width: 100vw;
 
 }
+
+
+
+/* On mobile screens, make the interaction area more specific */
+@media (max-width: 1000px) {
+  [data-rcs="root"] {
+    touch-action: pan-y !important; /* Force vertical scroll only */
+    pointer-events: none !important; /* Disable all pointer events on container */
+  }
+  
+  /* Only allow interactions on the handle itself */
+  /* [data-rcs="handle-container"] {
+    pointer-events: auto !important;
+    width: 60px !important;
+    margin-left: -30px !important;
+  } */
+  
+  /* Ensure the handle button is clickable */
+  /* .__rcs-handle-button {
+    pointer-events: auto !important;
+    width: 60px !important;
+    height: 60px !important;
+  } */
+  
+  /* Make the handle lines also interactive */
+  /* .__rcs-handle-line {
+    pointer-events: auto !important;
+    width: 4px !important;
+  }
+   */
+  /* Disable interactions on the clip items (the actual content) */
+  /* [data-rcs="clip-item"] {
+    pointer-events: none !important;
+  } */
+}
