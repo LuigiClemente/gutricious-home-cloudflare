@@ -21,6 +21,21 @@ import { useModal } from "react-simple-modal-provider";
 import { IMAGE_URL } from "@/utils/image_url";
 import dynamic from "next/dynamic";
 import { ScrollVideoPlayer } from "../ScrollVideoPlayer";
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+  
+  return isMobile;
+};
 
 // Dynamically import the video component with no SSR
 const VideoScrollSection = dynamic(
@@ -29,6 +44,9 @@ const VideoScrollSection = dynamic(
 );
 
 export const Main = () => {
+    const isMobile = useIsMobile();
+    console.log({isMobile})
+
   const t = useTranslations("Index");
   const searchParams = useSearchParams();
   const [langBtnState, setLangBtnState] = useState(false);
@@ -340,41 +358,43 @@ export const Main = () => {
       <CookiesModal></CookiesModal>
 
       <ReactCompareSlider
-        changePositionOnHover
-        boundsPadding={0}
-        itemOne={
-          <CompareSliderItem
-            theme="dark"
-            navigationSection="dark"
-            scrollItems="/assets/day"
-            navOpen={navOpen}
-            setNavOpen={setNavOpen}
-            isHovered={isHovered}
-            setIsHovered={setIsHovered}
-            isLangBtnHovered={isLangBtnHovered}
-            setIsLangBtnHovered={setIsLangBtnHovered}
-            selectCard={selectCard}
-          />
-        }
-        itemTwo={
-          <CompareSliderItem
-            theme="light"
-            navigationSection="light"
-            scrollItems="/assets/night"
-            navOpen={navOpen}
-            setNavOpen={setNavOpen}
-            isHovered={isHovered}
-            setIsHovered={setIsHovered}
-            isLangBtnHovered={isLangBtnHovered}
-            setIsLangBtnHovered={setIsLangBtnHovered}
-            selectCard={selectCard}
-          />
-        }
-        keyboardIncrement="5%"
-        position={50}
-        // FIX: enable interactions on small screens so the language menu is clickable
-        className="w-full overflow-y-visible min-h-screen pointer-events-auto"
-      />
+  changePositionOnHover={!isMobile}
+  boundsPadding={0}
+  itemOne={
+    <CompareSliderItem
+      theme="dark"
+      navigationSection="dark"
+      scrollItems="/assets/day"
+      navOpen={navOpen}
+      setNavOpen={setNavOpen}
+      isHovered={isHovered}
+      setIsHovered={setIsHovered}
+      isLangBtnHovered={isLangBtnHovered}
+      setIsLangBtnHovered={setIsLangBtnHovered}
+      selectCard={selectCard}
+    />
+  }
+  itemTwo={
+    <CompareSliderItem
+      theme="light"
+      navigationSection="light"
+      scrollItems="/assets/night"
+      navOpen={navOpen}
+      setNavOpen={setNavOpen}
+      isHovered={isHovered}
+      setIsHovered={setIsHovered}
+      isLangBtnHovered={isLangBtnHovered}
+      setIsLangBtnHovered={setIsLangBtnHovered}
+      selectCard={selectCard}
+    />
+  }
+  keyboardIncrement="5%"
+  position={50}
+  // Update className to ensure proper layering
+  className="w-full overflow-y-visible min-h-screen relative z-[1]"
+  // Add style to ensure the slider doesn't interfere with navigation
+  style={{ pointerEvents: 'auto', zIndex: 1 }}
+/>
 
       {/* Video Scrolling Section - Placed after CompareSlider and before Cards */}
       <div className="min-h-screen">

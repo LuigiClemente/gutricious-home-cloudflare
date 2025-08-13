@@ -1,7 +1,7 @@
 "use client";
 
 // Enable Edge Runtime for this route
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 import EmailFormThanksModal from '@/components/EmailFormThanksModal';
 import MarketSuccessForm from '@/components/MarketSuccessForm';

@@ -53,11 +53,11 @@ document.getElementById("demo").innerHTML = over18;
           </div>
         </div>
         <div
-          className="w-full relative z-20 py-16 pt-20"
+          className="w-full relative  py-16 pt-20"
           style={{ background: selectedCard.color }}
         >
           <div className="relative custom-container pb-32 pt-5">
-            <div className=" relative z-20 text-black">
+            <div className=" relative  text-black">
               {selectedCard.longSecHeading && (
                 <article
                   className="flex flex-col-reverse md:flex-row items-center  mb-5 p-8 md:p-16  rounded-2xl gap-0 min-h-[300px] hover:shadow-2xl transition"
@@ -242,7 +242,7 @@ document.getElementById("demo").innerHTML = over18;
               alt="secondary Image"
               height={300}
               width={500}
-              className="w-full h-full object-contain mt-10 max-h-[450px] relative z-20"
+              className="w-full h-full object-contain mt-10 max-h-[450px] relative "
             />
           )}
         </div>
@@ -270,11 +270,11 @@ document.getElementById("demo").innerHTML = over18;
               ></div>
             </>
           )}
-          <h3 className="text-6xl font-bold mb-16 mt-32 z-20 relative ">
+          <h3 className="text-6xl font-bold mb-16 mt-32  relative ">
             {t("readMoreDescription")}
           </h3>
 
-          <section className="mb-16 mt-28 custom-container z-20 relative ">
+          <section className="mb-16 mt-28 custom-container  relative ">
             <div className="flex gap-10 overflow-x-auto  scrollbar-hide cards-container mx-auto px-10 lg:px-28 text-white ">
               {otherCards.map((card: any) => (
                 <div
